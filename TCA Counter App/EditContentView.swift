@@ -15,8 +15,8 @@ struct EditContentView: View {
         WithViewStore(store) { viewStore in
             VStack{
                 TextField("count", text: viewStore.binding(
-                        get: { String($0.count) },
-                        send: { CounterAction.setCount($0) }
+                    get:  \.countString,
+                        send: CounterAction.setCount
                 )).keyboardType(.numberPad)
                     .frame(width: 120).padding()
             }.border(.gray)
