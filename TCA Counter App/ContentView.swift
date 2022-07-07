@@ -30,7 +30,11 @@ let counterReducer = Reducer<Counter, CounterAction, CounterEnvironment> {
             state.count -= 1
             return .none
         case .setCount(let text):
-            state.count = Int(text)!
+            if let value = Int(text) {
+                state.count = value
+            } else {
+                state.count = 0
+            }
             return .none
     }
 }
@@ -42,16 +46,16 @@ struct ContentView: View {
         WithViewStore(store) { viewStore in
             NavigationView{
                 VStack {
-                    VStack(alignment:.trailing ) {
-                        NavigationLink("Edit Page", destination: {
-                            EditContentView(store:store)
-                        })
-                    }.padding()
                     Text("\(viewStore.count)")
                     HStack {
                         Button("Inc"){ viewStore.send(.increment) }
                         Button("Dec"){ viewStore.send(.decrement) }
                     }
+                    VStack(alignment:.trailing ) {
+                        NavigationLink("Edit Count", destination: {
+                            EditContentView(store:store)
+                        })
+                    }.padding()
                 }
             }
         }

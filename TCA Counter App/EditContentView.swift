@@ -14,12 +14,12 @@ struct EditContentView: View {
     var body: some View {
         WithViewStore(store) { viewStore in
             VStack{
-                TextField("TextField", text: viewStore.binding(
+                TextField("count", text: viewStore.binding(
                         get: { String($0.count) },
                         send: { CounterAction.setCount($0) }
-                    ))
-                    .frame(width: 60)
-            }
+                )).keyboardType(.numberPad)
+                    .frame(width: 120).padding()
+            }.border(.gray)
         }
     }
 }
