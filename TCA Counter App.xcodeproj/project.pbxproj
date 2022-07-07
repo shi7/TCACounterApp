@@ -15,6 +15,7 @@
 		C06B082A287525F0001D3E2C /* TCA_Counter_AppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C06B0829287525F0001D3E2C /* TCA_Counter_AppUITests.swift */; };
 		C06B082C287525F0001D3E2C /* TCA_Counter_AppUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C06B082B287525F0001D3E2C /* TCA_Counter_AppUITestsLaunchTests.swift */; };
 		C06B087028752943001D3E2C /* ComposableArchitecture in Frameworks */ = {isa = PBXBuildFile; productRef = C06B086F28752943001D3E2C /* ComposableArchitecture */; };
+		C0C23E9128768839002C2DD9 /* EditContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0C23E9028768839002C2DD9 /* EditContentView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,6 +46,7 @@
 		C06B0825287525F0001D3E2C /* TCA Counter AppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "TCA Counter AppUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C06B0829287525F0001D3E2C /* TCA_Counter_AppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TCA_Counter_AppUITests.swift; sourceTree = "<group>"; };
 		C06B082B287525F0001D3E2C /* TCA_Counter_AppUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TCA_Counter_AppUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		C0C23E9028768839002C2DD9 /* EditContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditContentView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,6 +100,7 @@
 			children = (
 				C06B080E287525EC001D3E2C /* TCA_Counter_AppApp.swift */,
 				C06B0810287525EC001D3E2C /* ContentView.swift */,
+				C0C23E9028768839002C2DD9 /* EditContentView.swift */,
 				C06B0812287525EF001D3E2C /* Assets.xcassets */,
 				C06B0814287525EF001D3E2C /* Preview Content */,
 			);
@@ -266,6 +269,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C0C23E9128768839002C2DD9 /* EditContentView.swift in Sources */,
 				C06B0811287525EC001D3E2C /* ContentView.swift in Sources */,
 				C06B080F287525EC001D3E2C /* TCA_Counter_AppApp.swift in Sources */,
 			);
