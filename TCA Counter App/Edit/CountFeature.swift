@@ -48,6 +48,6 @@ let counterReducer = Reducer<CounterState, CounterAction, SystemEnvironment<Coun
 }
 
 struct ServiceError: Error, Equatable {
-    var msg: String = "service error"
+    var message: String = "service error"
 }
 

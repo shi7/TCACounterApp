@@ -33,14 +33,14 @@ let rootReducer = Reducer<
             if value < max {
                 return Effect(value: value + 1)
             } else {
-                return Effect(error: ServiceError(msg: "Inc failed: greater than max \(max)"))
+                return Effect(error: ServiceError(message: "increment failed: greater than max \(max)"))
             }
         },
         decrement: { value, min -> Effect <Int, ServiceError> in
             if value > min {
                 return Effect(value: value - 1)
             } else {
-                return Effect(error: ServiceError(msg: "Dec falied: lower than min \(min)"))
+                return Effect(error: ServiceError(message: "increment falied: lower than min \(min)"))
             }
         }))
     }))

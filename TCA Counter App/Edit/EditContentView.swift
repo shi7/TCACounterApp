@@ -30,10 +30,10 @@ struct EditContentView: View {
     }
 }
 
-struct EditContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        EditContentView(store:Store(
-            initialState: CounterState(),
-            reducer: counterReducer, environment: CounterEnvironment))
-    }
-}
+//struct EditContentView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        EditContentView(store:Store(
+//            initialState: CounterState(),
+//            reducer: counterReducer, environment: CounterEnvironment))
+//    }
+//}
