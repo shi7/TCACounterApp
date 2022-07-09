@@ -9,20 +9,18 @@ import SwiftUI
 import ComposableArchitecture
 
 struct ContentView: View {
-    let store: Store<Counter, CounterAction>
+    let store: Store<RootState, RootAction>
 
     var body: some View {
-        WithViewStore(store) { viewStore in
+        WithViewStore(self.store.stateless) { viewStore in
             NavigationView{
                 VStack {
-                    Text("\(viewStore.count)")
-                    HStack {
-                        Button("Inc"){ viewStore.send(.increment) }
-                        Button("Dec"){ viewStore.send(.decrement) }
-                    }
+//                    Text("\(store.state.)")
                     VStack(alignment:.trailing ) {
                         NavigationLink("Edit Count", destination: {
-                            EditContentView(store:store)
+                            EditContentView(store:store.scope(
+                                state: \.countState, action: RootAction.counterAction
+                            ))
                         })
                     }.padding()
                 }
@@ -33,6 +31,10 @@ struct ContentView: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView(store: Store(initialState: Counter(), reducer: counterReducer, environment: CounterEnvironment()))
+        ContentView(store: Store(
+            initialState: RootState(),
+            reducer: rootReducer,
+            environment: .dev(environment: RootEnvironment()
+        )))
     }
 }

@@ -8,11 +8,11 @@
 import Foundation
 import ComposableArchitecture
 
-struct Counter: Equatable {
+struct CounterState: Equatable {
     var count: Int = 0
 }
 
-extension Counter {
+extension CounterState {
   var countString: String {
     get { String(count) }
     set { count = Int(newValue) ?? 0 }
@@ -25,9 +25,14 @@ enum CounterAction {
     case setCount(String)
 }
 
-struct CounterEnvironment { }
+struct CounterEnvironment {
+    static let Max = 99
+    static let Min = -99
+    var increment: (Int, Int) -> Effect<Int, ServiceError>
+    var decrement: (Int, Int) -> Effect<Int, ServiceError>
+}
 
-let counterReducer = Reducer<Counter, CounterAction, CounterEnvironment> {
+let counterReducer = Reducer<CounterState, CounterAction, SystemEnvironment<CounterEnvironment> > {
     state, action, _ in
     switch action {
         case .increment:
@@ -41,3 +46,8 @@ let counterReducer = Reducer<Counter, CounterAction, CounterEnvironment> {
             return .none
     }
 }
+
+struct ServiceError: Error, Equatable {
+    var msg: String = "service error"
+}
+
