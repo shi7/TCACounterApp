@@ -15,10 +15,12 @@ struct ContentView: View {
         WithViewStore(self.store.stateless) { viewStore in
             NavigationView{
                 VStack {
-//                    Text("\(store.state.)")
+                    CountLabel(store: store.scope(
+                        state: \.countState, action: RootAction.counterAction
+                    ))
                     VStack(alignment:.trailing ) {
                         NavigationLink("Edit Count", destination: {
-                            EditContentView(store:store.scope(
+                            EditContentView(store: store.scope(
                                 state: \.countState, action: RootAction.counterAction
                             ))
                         })

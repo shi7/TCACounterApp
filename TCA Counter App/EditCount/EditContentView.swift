@@ -1,9 +1,9 @@
-//
-//  EditContentView.swift
-//  TCA Counter App
-//
-//  Copyright © 2022 compass.com. All rights reserved.
-//
+    //
+    //  EditContentView.swift
+    //  TCA Counter App
+    //
+    //  Copyright © 2022 compass.com. All rights reserved.
+    //
 
 import SwiftUI
 import ComposableArchitecture
@@ -17,7 +17,7 @@ struct EditContentView: View {
                 VStack {
                     TextField("count", text: viewStore.binding(
                         get:  \.countString,
-                            send: CounterAction.setCount
+                        send: CounterAction.setCount
                     )).keyboardType(.numberPad)
                         .frame(width: 120).padding()
                 }.border(.gray)
@@ -25,15 +25,7 @@ struct EditContentView: View {
                     Button("Inc"){ viewStore.send(.increment) }
                     Button("Dec"){ viewStore.send(.decrement) }
                 }
-            }
+            }.alert(self.store.scope(state: \.alert),dismiss: .alertCancelTapped)
         }
     }
 }
-
-//struct EditContentView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        EditContentView(store:Store(
-//            initialState: CounterState(),
-//            reducer: counterReducer, environment: CounterEnvironment))
-//    }
-//}
