@@ -26,10 +26,7 @@ enum LockAction {
 struct LockEnvironment {
     static func live() -> LockEnvironment {
         LockEnvironment(verifyLockNumber: { dataArray in
-            let array: IdentifiedArrayOf<CounterState> = dataArray
-            return array[0].count == 9
-            && array[1].count == 5
-            && array[2].count == 7
+            dataArray.map{ $0.count } == [9, 5, 7]
         })
     }
     var verifyLockNumber: (IdentifiedArrayOf<CounterState>) -> Bool
