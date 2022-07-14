@@ -13,18 +13,13 @@ struct EditContentView: View {
 
     var body: some View {
         WithViewStore(store) { viewStore in
-            VStack {
-                HStack {
-                    Button("Inc"){ viewStore.send(.increment) }
-//                    TextField("count", text: viewStore.binding(
-//                        get:  \.countString,
-//                        send: CounterAction.setCount
-//                    )).keyboardType(.numberPad)
-//                        .frame(width: 120).padding()
+            HStack(alignment: .center, spacing: 20) {
+                Button("Dec"){ viewStore.send(.decrement) }.padding().buttonStyle(BorderlessButtonStyle())
 
-                    Text("\(viewStore.countString)")
-                    Button("Dec"){ viewStore.send(.decrement) }
-                }
+                Text("\(viewStore.countString)").padding()
+
+                Button("Inc"){ viewStore.send(.increment) }.padding().buttonStyle(BorderlessButtonStyle())
+
             }.alert(self.store.scope(state: \.alert),dismiss: .alertCancelTapped)
         }
     }

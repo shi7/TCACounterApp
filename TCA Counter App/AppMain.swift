@@ -15,7 +15,7 @@ struct TCA_Counter_AppApp: App {
             ContentView(store: Store(
                 initialState: RootState(),
                 reducer: rootReducer,
-                environment: .live(environment: RootEnvironment())))
+                environment: RootEnvironment() ))
         }
     }
 }

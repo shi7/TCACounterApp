@@ -9,10 +9,11 @@ import Foundation
 import ComposableArchitecture
 
 struct CounterState: Equatable, Identifiable {
+    var id = UUID()
     static func == (lhs: CounterState, rhs: CounterState) -> Bool {
         return lhs.count == rhs.count
     }
-    var id: UUID = UUID()
+
     var count: Int = 0
     var alert: AlertState<CounterAction>?
 }
@@ -34,24 +35,24 @@ enum CounterAction {
 }
 
 struct CounterEnvironment {
-    static let Max = 5
+    static let Max = 9
     static let Min = 0
     var increment: (Int, Int) -> Effect<Int, ServiceError>
     var decrement: (Int, Int) -> Effect<Int, ServiceError>
     var setCountEffect: (String, Int, Int) -> Effect<Int, ServiceError>
 }
 
-let counterReducer = Reducer<CounterState, CounterAction, SystemEnvironment<CounterEnvironment> > {
+let counterReducer = Reducer<CounterState, CounterAction, CounterEnvironment > {
     state, action, environment in
     switch action {
         case .increment:
-            return environment.environment.increment(state.count,CounterEnvironment.Max).receive(on: DispatchQueue.main.eraseToAnyScheduler())
+            return environment.increment(state.count,CounterEnvironment.Max).receive(on: DispatchQueue.main.eraseToAnyScheduler())
                 .catchToEffect(CounterAction.counterResponse)
         case .decrement:
-            return environment.environment.decrement(state.count,CounterEnvironment.Min).receive(on: DispatchQueue.main.eraseToAnyScheduler())
+            return environment.decrement(state.count,CounterEnvironment.Min).receive(on: DispatchQueue.main.eraseToAnyScheduler())
                 .catchToEffect(CounterAction.counterResponse)
         case .setCount(let text):
-            return environment.environment.setCountEffect(text, CounterEnvironment.Max, CounterEnvironment.Min).receive(on: DispatchQueue.main.eraseToAnyScheduler())
+            return environment.setCountEffect(text, CounterEnvironment.Max, CounterEnvironment.Min).receive(on: DispatchQueue.main.eraseToAnyScheduler())
                 .catchToEffect(CounterAction.counterResponse)
         case let .counterResponse(result):
             switch result {

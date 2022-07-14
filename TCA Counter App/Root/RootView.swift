@@ -10,7 +10,7 @@ import ComposableArchitecture
 
 struct ContentView: View {
     let store: Store<RootState, RootAction>
-    @State private var isPresented = false
+    @State private var showPresent = false
 
     var body: some View {
         WithViewStore(self.store.stateless) { viewStore in
@@ -26,12 +26,15 @@ struct ContentView: View {
                             ))
                         })
                     }.padding()
+
+                    VStack(alignment:.trailing ) {
+                        NavigationLink("Lock View", destination: {
+                            LockView()
+                        })
+                    }
                 }
-                Text("Lock view").sheet(isPresented: $isPresented, onDismiss: {
-                    print("Modal dismissed. State now: \(self.isPresented)")
-                }) {
-                    LockView()
-                }
+
+
             }
         }
     }
@@ -42,7 +45,6 @@ struct ContentView_Previews: PreviewProvider {
         ContentView(store: Store(
             initialState: RootState(),
             reducer: rootReducer,
-            environment: .dev(environment: RootEnvironment()
-        )))
+            environment: RootEnvironment()))
     }
 }

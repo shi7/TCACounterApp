@@ -10,24 +10,26 @@ import SwiftUI
 import ComposableArchitecture
 
 struct LockView: View {
-    let store: Store<LockState, LockAction>
+    let store: Store<LockState, LockAction> = Store(initialState: LockState(
+        countersData: [
+            CounterState(count: 0),
+            CounterState(count: 0),
+            CounterState(count: 0)
+        ]
+    ), reducer: lockViewReducer, environment:
+            LockEnvironment.live()
+    )
     
     var body: some View {
-        List{
+        List(){
             ForEachStore(
                 self.store.scope(
-                    state: \.counters,
-                    action: LockAction.counter(id:action:)
+                    state: \.countersData,
+                    action: LockAction.countStateUpdate(id:action:)
                 )
             ) { counterStore in
                 EditContentView(store: counterStore)
             }
-        }
+        }.alert( self.store.scope(state: \.lockAlert),dismiss: .alertTapped)
     }
 }
-
-//struct LockView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        LockView()
-//    }
-//}
