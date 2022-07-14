@@ -20,6 +20,8 @@
 		C0C23E9F28791E06002C2DD9 /* RootFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0C23E9E28791E06002C2DD9 /* RootFeature.swift */; };
 		C7D9F2FF287A585C00418CEC /* CountLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7D9F2FE287A585C00418CEC /* CountLabel.swift */; };
 		C7D9F301287A657700418CEC /* CountEffects.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7D9F300287A657700418CEC /* CountEffects.swift */; };
+		C7E1AA56287F1AAF00906D29 /* LockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7E1AA55287F1AAF00906D29 /* LockView.swift */; };
+		C7E1AA58287F1AC300906D29 /* LockFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7E1AA57287F1AC300906D29 /* LockFeature.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,6 +57,8 @@
 		C0C23E9E28791E06002C2DD9 /* RootFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootFeature.swift; sourceTree = "<group>"; };
 		C7D9F2FE287A585C00418CEC /* CountLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountLabel.swift; sourceTree = "<group>"; };
 		C7D9F300287A657700418CEC /* CountEffects.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountEffects.swift; sourceTree = "<group>"; };
+		C7E1AA55287F1AAF00906D29 /* LockView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LockView.swift; sourceTree = "<group>"; };
+		C7E1AA57287F1AC300906D29 /* LockFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LockFeature.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -107,6 +111,7 @@
 			isa = PBXGroup;
 			children = (
 				C06B080E287525EC001D3E2C /* AppMain.swift */,
+				C7E1AA54287F1A9600906D29 /* LockView */,
 				C0C23E9C28791BEE002C2DD9 /* Root */,
 				C0C23E9D28791D9D002C2DD9 /* EditCount */,
 				C06B0812287525EF001D3E2C /* Assets.xcassets */,
@@ -158,6 +163,15 @@
 				C0C23E9028768839002C2DD9 /* EditContentView.swift */,
 			);
 			path = EditCount;
+			sourceTree = "<group>";
+		};
+		C7E1AA54287F1A9600906D29 /* LockView */ = {
+			isa = PBXGroup;
+			children = (
+				C7E1AA55287F1AAF00906D29 /* LockView.swift */,
+				C7E1AA57287F1AC300906D29 /* LockFeature.swift */,
+			);
+			path = LockView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -298,10 +312,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				C7D9F2FF287A585C00418CEC /* CountLabel.swift in Sources */,
+				C7E1AA58287F1AC300906D29 /* LockFeature.swift in Sources */,
 				C0C23E9128768839002C2DD9 /* EditContentView.swift in Sources */,
 				C7D9F301287A657700418CEC /* CountEffects.swift in Sources */,
 				C06B0811287525EC001D3E2C /* RootView.swift in Sources */,
 				C0C23E992876D627002C2DD9 /* CountFeature.swift in Sources */,
+				C7E1AA56287F1AAF00906D29 /* LockView.swift in Sources */,
 				C06B080F287525EC001D3E2C /* AppMain.swift in Sources */,
 				C0C23E9F28791E06002C2DD9 /* RootFeature.swift in Sources */,
 			);

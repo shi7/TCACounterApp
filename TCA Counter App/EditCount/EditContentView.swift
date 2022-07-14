@@ -14,15 +14,15 @@ struct EditContentView: View {
     var body: some View {
         WithViewStore(store) { viewStore in
             VStack {
-                VStack {
-                    TextField("count", text: viewStore.binding(
-                        get:  \.countString,
-                        send: CounterAction.setCount
-                    )).keyboardType(.numberPad)
-                        .frame(width: 120).padding()
-                }.border(.gray)
                 HStack {
                     Button("Inc"){ viewStore.send(.increment) }
+//                    TextField("count", text: viewStore.binding(
+//                        get:  \.countString,
+//                        send: CounterAction.setCount
+//                    )).keyboardType(.numberPad)
+//                        .frame(width: 120).padding()
+
+                    Text("\(viewStore.countString)")
                     Button("Dec"){ viewStore.send(.decrement) }
                 }
             }.alert(self.store.scope(state: \.alert),dismiss: .alertCancelTapped)

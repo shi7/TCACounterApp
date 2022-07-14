@@ -31,10 +31,10 @@ let rootReducer = Reducer<
             increment: incrementEffect,
             decrement: decrementEffect,
             setCountEffect: setCountEffect
-        ))
-        }))
+        ))})
+)
 
-@dynamicMemberLookup
+//@dynamicMemberLookup
 struct SystemEnvironment<Environment> {
     var environment: Environment
 
@@ -44,7 +44,7 @@ struct SystemEnvironment<Environment> {
         get { self.environment[keyPath: keyPath] }
         set { self.environment[keyPath: keyPath] = newValue }
     }
-
+//
     var mcounterResponseainQueue: () -> AnySchedulerOf<DispatchQueue>
 
     static func live(environment: Environment) -> Self {
