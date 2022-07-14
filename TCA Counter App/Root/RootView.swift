@@ -27,14 +27,14 @@ struct ContentView: View {
                         })
                     }.padding()
 
-                    VStack(alignment:.trailing ) {
-                        NavigationLink("Lock View", destination: {
-                            LockView()
-                        })
+                    Button(action: {
+                        self.showPresent.toggle()
+                    }) {
+                        Text("LockView")
+                    }.sheet(isPresented: $showPresent) {
+                        LockView()
                     }
                 }
-
-
             }
         }
     }
