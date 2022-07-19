@@ -9,7 +9,8 @@ import ComposableArchitecture
 import Foundation
 
 struct RootState: Equatable {
-    var showPresent: Bool
+    var isActiveLockView: Bool
+    var isActiveUserView: Bool
     var countState = CounterState(min: 0, max: 9)
     var counterDetail = CounterDetailState(counter: CounterState(min: 0, max: 9))
 }
@@ -18,6 +19,7 @@ enum RootAction {
     case counterAction(CounterAction)
     case counterDetailAction(CounterDetailAction)
     case setLockActive(Bool)
+    case setUserActive(Bool)
 }
 
 struct RootEnvironment {}
@@ -48,7 +50,7 @@ let rootReducer = Reducer<
             }
             return .none
         case let .setLockActive(show):
-            state.showPresent = show
+            state.isActiveLockView = show
             return .none
         default:
             return .none

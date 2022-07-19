@@ -31,7 +31,7 @@ struct RootView: View {
                     Text("LockView")
                 }
             }.sheet(isPresented: viewStore.binding(
-                get: \.showPresent,
+                get: \.isActiveLockView,
                 send: RootAction.setLockActive
             )) {
                 LockView()
