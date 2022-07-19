@@ -5,15 +5,14 @@
 //  Created by Xiangmu Shi on 2022/7/18.
 //
 
-import SwiftUI
 import ComposableArchitecture
-
+import SwiftUI
 
 struct AppView: View {
     let store: Store<AppState, AppAction>
 
     var body: some View {
-        WithViewStore(store) { viewStore in
+        WithViewStore(store) { _ in
             NavigationView {
                 RootView(store: store.scope(
                     state: \.root,

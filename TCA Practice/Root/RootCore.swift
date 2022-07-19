@@ -5,8 +5,8 @@
 //  Created by Xiangmu Shi on 2022/7/18.
 //
 
-import Foundation
 import ComposableArchitecture
+import Foundation
 
 struct RootState: Equatable {
     var showPresent: Bool
@@ -22,7 +22,6 @@ enum RootAction {
 
 struct RootEnvironment {}
 
-
 let rootReducer = Reducer<
     RootState,
     RootAction,
@@ -35,23 +34,24 @@ let rootReducer = Reducer<
             increment: incrementEffect,
             decrement: decrementEffect,
             setCountEffect: setCountEffect
-        ))}),
+        )) }
+    ),
 
     Reducer { state, action, _ in
         switch action {
-            case .counterDetailAction(.counterView(.counterResponse(let result))):
-                switch result {
-                    case .success(let repositories):
-                        state.countState.count = repositories
-                    case .failure(let error):
-                        break
-                }
-                return .none
-            case .setLockActive(let show):
-                state.showPresent = show
-                return .none
-            default:
-                return .none
+        case let .counterDetailAction(.counterView(.counterResponse(result))):
+            switch result {
+            case let .success(repositories):
+                state.countState.count = repositories
+            case let .failure(error):
+                break
+            }
+            return .none
+        case let .setLockActive(show):
+            state.showPresent = show
+            return .none
+        default:
+            return .none
         }
     }
 )

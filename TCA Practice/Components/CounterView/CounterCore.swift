@@ -5,13 +5,14 @@
 //  Created by Xiangmu Shi on 2022/7/18.
 //
 
-import Foundation
 import ComposableArchitecture
+import Foundation
 
 struct CounterState: Equatable, Identifiable {
     static func == (lhs: CounterState, rhs: CounterState) -> Bool {
         return lhs.count == rhs.count
     }
+
     var id = UUID()
     var count: Int = 0
     var alert: AlertState<CounterAction>?
@@ -34,7 +35,6 @@ enum CounterAction: Equatable {
     case alertCancelTapped
     case alertConfirmTapped
 }
-
 
 struct ServiceError: Error, Equatable {
     var message: String = ""
@@ -67,31 +67,29 @@ func setCountEffect(value: String, max: Int, min: Int) -> Effect<Int, ServiceErr
     }
 }
 
-
-let counterReducer = Reducer<CounterState, CounterAction, CounterEnvironment > {
+let counterReducer = Reducer<CounterState, CounterAction, CounterEnvironment> {
     state, action, environment in
     switch action {
-        case .increment:
-            return environment.increment(state.count,state.max).receive(on: DispatchQueue.main.eraseToAnyScheduler())
-                .catchToEffect(CounterAction.counterResponse)
-        case .decrement:
-            return environment.decrement(state.count,state.min).receive(on: DispatchQueue.main.eraseToAnyScheduler())
-                .catchToEffect(CounterAction.counterResponse)
-        case .setCount(let text):
-            return environment.setCountEffect(text, state.max, state.min).receive(on: DispatchQueue.main.eraseToAnyScheduler())
-                .catchToEffect(CounterAction.counterResponse)
-        case let .counterResponse(result):
-            switch result {
-                case .success(let repositories):
-                    state.count = repositories
-                case .failure(let error):
-                    state.alert = AlertState(title: TextState("\(error.message)"),dismissButton: .cancel(TextState("Sure")))
-                    break
-            }
-            return .none
-        case .alertCancelTapped,
-                .alertConfirmTapped:
-            state.alert = nil
-            return .none
+    case .increment:
+        return environment.increment(state.count, state.max).receive(on: DispatchQueue.main.eraseToAnyScheduler())
+            .catchToEffect(CounterAction.counterResponse)
+    case .decrement:
+        return environment.decrement(state.count, state.min).receive(on: DispatchQueue.main.eraseToAnyScheduler())
+            .catchToEffect(CounterAction.counterResponse)
+    case let .setCount(text):
+        return environment.setCountEffect(text, state.max, state.min).receive(on: DispatchQueue.main.eraseToAnyScheduler())
+            .catchToEffect(CounterAction.counterResponse)
+    case let .counterResponse(result):
+        switch result {
+        case let .success(repositories):
+            state.count = repositories
+        case let .failure(error):
+            state.alert = AlertState(title: TextState("\(error.message)"), dismissButton: .cancel(TextState("Sure")))
+        }
+        return .none
+    case .alertCancelTapped,
+         .alertConfirmTapped:
+        state.alert = nil
+        return .none
     }
 }

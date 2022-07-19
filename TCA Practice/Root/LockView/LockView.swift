@@ -5,8 +5,8 @@
 //  Created by Xiangmu Shi on 2022/7/18.
 //
 
-import SwiftUI
 import ComposableArchitecture
+import SwiftUI
 
 struct LockView: View {
     let store: Store<LockState, LockAction> = Store(initialState: LockState(
@@ -17,7 +17,7 @@ struct LockView: View {
         ]), reducer: lockViewReducer, environment: LockEnvironment())
 
     var body: some View {
-        List(){
+        List {
             ForEachStore(
                 self.store.scope(
                     state: \.countersData,
@@ -26,8 +26,6 @@ struct LockView: View {
             ) { counterStore in
                 ConterView(store: counterStore)
             }
-        }.alert( self.store.scope(state: \.lockAlert),dismiss: .alertTapped)
+        }.alert(self.store.scope(state: \.lockAlert), dismiss: .alertTapped)
     }
 }
-
-

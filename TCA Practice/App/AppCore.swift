@@ -5,11 +5,11 @@
 //  Created by Xiangmu Shi on 2022/7/18.
 //
 
-import Foundation
 import ComposableArchitecture
+import Foundation
 
 struct AppState: Equatable {
-    var root: RootState = RootState.init(showPresent: false)
+    var root: RootState = .init(showPresent: false)
 }
 
 enum AppAction {

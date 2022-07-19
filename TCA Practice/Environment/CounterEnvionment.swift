@@ -5,8 +5,8 @@
 //  Created by Xiangmu Shi on 2022/7/18.
 //
 
-import Foundation
 import ComposableArchitecture
+import Foundation
 
 struct CounterEnvironment {
     var increment: (Int, Int) -> Effect<Int, ServiceError>

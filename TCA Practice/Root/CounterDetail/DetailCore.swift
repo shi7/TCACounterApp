@@ -5,8 +5,8 @@
 //  Created by Xiangmu Shi on 2022/7/18.
 //
 
-import Foundation
 import ComposableArchitecture
+import Foundation
 
 struct CounterDetailState: Equatable {
     var counter: CounterState
@@ -27,5 +27,3 @@ let counterDetailReducer: Reducer<CounterDetailState, CounterDetailAction, Count
         environment: \.counter
     )
 )
-
-
