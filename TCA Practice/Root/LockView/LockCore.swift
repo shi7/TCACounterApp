@@ -1,13 +1,12 @@
 //
-//  LockFeature.swift
-//  TCA Counter App
+//  LockCore.swift
+//  TCA Practice
 //
-//  Created by Xiangmu Shi on 2022/7/13.
-//  Copyright © 2022 compass.com. All rights reserved.
+//  Created by Xiangmu Shi on 2022/7/18.
 //
 
-import ComposableArchitecture
 import Foundation
+import ComposableArchitecture
 
 struct LockState: Equatable {
     static func == (lhs: LockState, rhs: LockState) -> Bool {
@@ -24,12 +23,7 @@ enum LockAction {
 }
 
 struct LockEnvironment {
-    static func live() -> LockEnvironment {
-        LockEnvironment(verifyLockNumber: { dataArray in
-            dataArray.map{ $0.count } == [9, 5, 7]
-        })
-    }
-    var verifyLockNumber: (IdentifiedArrayOf<CounterState>) -> Bool
+
 }
 
 let lockViewReducer: Reducer<LockState, LockAction, LockEnvironment> =
@@ -47,9 +41,11 @@ counterReducer.forEach(
             state.lockAlert = nil
             return .none
         case let .countStateUpdate(id: id, action: .counterResponse(.success(value))):
-            if environment.verifyLockNumber(state.countersData) {
-                state.lockAlert = AlertState(title: .init("Unlocked!"))
+            let dataArray = state.countersData.map{ $0.count }
+            guard dataArray == [9, 5, 7] else {
+                return .none
             }
+            state.lockAlert = AlertState(title: .init("Unlocked!"))
             return .none
         default:
             return .none

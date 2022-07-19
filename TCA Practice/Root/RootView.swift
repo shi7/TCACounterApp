@@ -1,32 +1,31 @@
 //
-//  ContentView.swift
-//  TCA Counter App
+//  RootView.swift
+//  TCA Practice
 //
-//  Created by xiangmu.shi on 2022/7/6.
+//  Created by Xiangmu Shi on 2022/7/18.
 //
 
 import SwiftUI
 import ComposableArchitecture
 
-struct ContentView: View {
+struct RootView: View {
     let store: Store<RootState, RootAction>
     @State private var showPresent = false
 
     var body: some View {
         WithViewStore(self.store.stateless) { viewStore in
-            NavigationView{
                 VStack {
-                    CountLabel(store: store.scope(
+                    RootLabel(store: store.scope(
                         state: \.countState, action: RootAction.counterAction
                     ))
                     VStack(alignment:.trailing ) {
                         NavigationLink("Edit Count", destination: {
-                            EditContentView(store: store.scope(
-                                state: \.countState, action: RootAction.counterAction
+                            CounterDetail(store: store.scope(
+                                state: \.counterDetail, action: RootAction.counterDetailAction
                             ))
                         })
                     }.padding()
-
+                    
                     Button(action: {
                         self.showPresent.toggle()
                     }) {
@@ -35,16 +34,19 @@ struct ContentView: View {
                         LockView()
                     }
                 }
-            }
+
         }
     }
 }
 
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        ContentView(store: Store(
-            initialState: RootState(),
-            reducer: rootReducer,
-            environment: RootEnvironment()))
-    }
-}
+
+
+
+//struct RootView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        RootView(store: Store(
+//            initialState: RootState(),
+//            reducer: rootReducer,
+//            environment: RootEnvironment()))
+//    }
+//}

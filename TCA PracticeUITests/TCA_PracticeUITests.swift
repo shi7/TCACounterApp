@@ -1,13 +1,13 @@
 //
-//  TCA_Counter_AppUITests.swift
-//  TCA Counter AppUITests
+//  TCA_PracticeUITests.swift
+//  TCA PracticeUITests
 //
-//  Created by xiangmu.shi on 2022/7/6.
+//  Created by Xiangmu Shi on 2022/7/18.
 //
 
 import XCTest
 
-class TCA_Counter_AppUITests: XCTestCase {
+class TCA_PracticeUITests: XCTestCase {
 
     override func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.

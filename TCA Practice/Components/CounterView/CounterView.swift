@@ -1,14 +1,14 @@
-    //
-    //  EditContentView.swift
-    //  TCA Counter App
-    //
-    //  Copyright © 2022 compass.com. All rights reserved.
-    //
+//
+//  CounterView.swift
+//  TCA Practice
+//
+//  Created by Xiangmu Shi on 2022/7/18.
+//
 
 import SwiftUI
 import ComposableArchitecture
 
-struct EditContentView: View {
+struct ConterView: View {
     let store: Store<CounterState, CounterAction>
 
     var body: some View {

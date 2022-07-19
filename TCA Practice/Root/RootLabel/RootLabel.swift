@@ -1,15 +1,15 @@
 //
-//  CountLabel.swift
-//  TCA Counter App
+//  RootLabel.swift
+//  TCA Practice
 //
-//  Created by Xiangmu Shi on 2022/7/11.
-//  Copyright © 2022 compass.com. All rights reserved.
+//  Created by Xiangmu Shi on 2022/7/18.
 //
 
+import Foundation
 import SwiftUI
 import ComposableArchitecture
 
-struct CountLabel: View {
+struct RootLabel: View {
     let store: Store<CounterState, CounterAction>
 
     var body: some View {

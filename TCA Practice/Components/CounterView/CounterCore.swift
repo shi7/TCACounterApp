@@ -1,21 +1,22 @@
-    //
-    //  CountFeature.swift
-    //  TCA Counter App
-    //
-    //  Copyright © 2022 compass.com. All rights reserved.
-    //
+//
+//  CounterCore.swift
+//  TCA Practice
+//
+//  Created by Xiangmu Shi on 2022/7/18.
+//
 
 import Foundation
 import ComposableArchitecture
 
 struct CounterState: Equatable, Identifiable {
-    var id = UUID()
     static func == (lhs: CounterState, rhs: CounterState) -> Bool {
         return lhs.count == rhs.count
     }
-
+    var id = UUID()
     var count: Int = 0
     var alert: AlertState<CounterAction>?
+    var min: Int
+    var max: Int
 }
 
 extension CounterState {
@@ -34,25 +35,50 @@ enum CounterAction {
     case alertConfirmTapped
 }
 
-struct CounterEnvironment {
-    static let Max = 9
-    static let Min = 0
-    var increment: (Int, Int) -> Effect<Int, ServiceError>
-    var decrement: (Int, Int) -> Effect<Int, ServiceError>
-    var setCountEffect: (String, Int, Int) -> Effect<Int, ServiceError>
+
+struct ServiceError: Error, Equatable {
+    var message: String = ""
 }
+
+func incrementEffect(value: Int, max: Int) -> Effect<Int, ServiceError> {
+    if value < max {
+        return Effect(value: value + 1)
+    } else {
+        return Effect(error: ServiceError(message: "increment failed: greater than max \(max)"))
+    }
+}
+
+func decrementEffect(value: Int, min: Int) -> Effect<Int, ServiceError> {
+    if value > min {
+        return Effect(value: value - 1)
+    } else {
+        return Effect(error: ServiceError(message: "decrement falied: lower than min \(min)"))
+    }
+}
+
+func setCountEffect(value: String, max: Int, min: Int) -> Effect<Int, ServiceError> {
+    guard let count = Int(value) else {
+        return Effect(value: 0)
+    }
+    if count >= min, count <= max {
+        return Effect(value: count)
+    } else {
+        return Effect(error: ServiceError(message: "count need between \(min) and \(max) "))
+    }
+}
+
 
 let counterReducer = Reducer<CounterState, CounterAction, CounterEnvironment > {
     state, action, environment in
     switch action {
         case .increment:
-            return environment.increment(state.count,CounterEnvironment.Max).receive(on: DispatchQueue.main.eraseToAnyScheduler())
+            return environment.increment(state.count,state.max).receive(on: DispatchQueue.main.eraseToAnyScheduler())
                 .catchToEffect(CounterAction.counterResponse)
         case .decrement:
-            return environment.decrement(state.count,CounterEnvironment.Min).receive(on: DispatchQueue.main.eraseToAnyScheduler())
+            return environment.decrement(state.count,state.min).receive(on: DispatchQueue.main.eraseToAnyScheduler())
                 .catchToEffect(CounterAction.counterResponse)
         case .setCount(let text):
-            return environment.setCountEffect(text, CounterEnvironment.Max, CounterEnvironment.Min).receive(on: DispatchQueue.main.eraseToAnyScheduler())
+            return environment.setCountEffect(text, state.max, state.min).receive(on: DispatchQueue.main.eraseToAnyScheduler())
                 .catchToEffect(CounterAction.counterResponse)
         case let .counterResponse(result):
             switch result {
@@ -64,9 +90,8 @@ let counterReducer = Reducer<CounterState, CounterAction, CounterEnvironment > {
             }
             return .none
         case .alertCancelTapped,
-            .alertConfirmTapped:
+                .alertConfirmTapped:
             state.alert = nil
             return .none
     }
 }
-

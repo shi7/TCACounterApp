@@ -1,9 +1,8 @@
 //
 //  LockView.swift
-//  TCA Counter App
+//  TCA Practice
 //
-//  Created by Xiangmu Shi on 2022/7/13.
-//  Copyright © 2022 compass.com. All rights reserved.
+//  Created by Xiangmu Shi on 2022/7/18.
 //
 
 import SwiftUI
@@ -12,14 +11,12 @@ import ComposableArchitecture
 struct LockView: View {
     let store: Store<LockState, LockAction> = Store(initialState: LockState(
         countersData: [
-            CounterState(count: 0),
-            CounterState(count: 0),
-            CounterState(count: 0)
+            CounterState(count: 0, min: 0, max: 9),
+            CounterState(count: 0, min: 0, max: 9),
+            CounterState(count: 0, min: 0, max: 9),
         ]
-    ), reducer: lockViewReducer, environment:
-            LockEnvironment.live()
-    )
-    
+    ), reducer: lockViewReducer, environment: LockEnvironment())
+
     var body: some View {
         List(){
             ForEachStore(
@@ -28,8 +25,9 @@ struct LockView: View {
                     action: LockAction.countStateUpdate(id:action:)
                 )
             ) { counterStore in
-                EditContentView(store: counterStore)
+                ConterView(store: counterStore)
             }
         }.alert( self.store.scope(state: \.lockAlert),dismiss: .alertTapped)
     }
 }
+
