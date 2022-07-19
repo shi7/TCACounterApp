@@ -9,10 +9,6 @@ import ComposableArchitecture
 import Foundation
 
 struct CounterState: Equatable, Identifiable {
-    static func == (lhs: CounterState, rhs: CounterState) -> Bool {
-        return lhs.count == rhs.count
-    }
-
     var id = UUID()
     var count: Int = 0
     var alert: AlertState<CounterAction>?
