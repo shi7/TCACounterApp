@@ -9,15 +9,12 @@ import Foundation
 import ComposableArchitecture
 
 struct LockState: Equatable {
-    static func == (lhs: LockState, rhs: LockState) -> Bool {
-        return lhs.countersData == rhs.countersData
-    }
-    var lockAlert: AlertState<LockAction>?
     var countersData: IdentifiedArrayOf<CounterState> = []
+    var unlocked: Bool = false
+    var lockAlert: AlertState<LockAction>?
 }
 
-
-enum LockAction {
+enum LockAction: Equatable{
     case alertTapped
     case countStateUpdate(id: CounterState.ID, action: CounterAction)
 }

@@ -14,8 +14,7 @@ struct LockView: View {
             CounterState(count: 0, min: 0, max: 9),
             CounterState(count: 0, min: 0, max: 9),
             CounterState(count: 0, min: 0, max: 9),
-        ]
-    ), reducer: lockViewReducer, environment: LockEnvironment())
+        ]), reducer: lockViewReducer, environment: LockEnvironment())
 
     var body: some View {
         List(){
@@ -30,4 +29,5 @@ struct LockView: View {
         }.alert( self.store.scope(state: \.lockAlert),dismiss: .alertTapped)
     }
 }
+
 

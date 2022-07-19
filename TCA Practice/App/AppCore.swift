@@ -9,11 +9,7 @@ import Foundation
 import ComposableArchitecture
 
 struct AppState: Equatable {
-    static func == (lhs: AppState, rhs: AppState) -> Bool {
-        return true
-    }
-
-    var root: RootState = RootState.init(lockActive: true)
+    var root: RootState = RootState.init(showPresent: false)
 }
 
 enum AppAction {

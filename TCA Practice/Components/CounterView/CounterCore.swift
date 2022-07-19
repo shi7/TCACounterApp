@@ -26,7 +26,7 @@ extension CounterState {
     }
 }
 
-enum CounterAction {
+enum CounterAction: Equatable {
     case increment
     case decrement
     case setCount(String)

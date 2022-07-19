@@ -9,8 +9,6 @@ import Foundation
 import ComposableArchitecture
 
 struct CounterEnvironment {
-//    static let Max = 9
-//    static let Min = 0
     var increment: (Int, Int) -> Effect<Int, ServiceError>
     var decrement: (Int, Int) -> Effect<Int, ServiceError>
     var setCountEffect: (String, Int, Int) -> Effect<Int, ServiceError>

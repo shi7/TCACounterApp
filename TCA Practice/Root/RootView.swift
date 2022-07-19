@@ -10,10 +10,9 @@ import ComposableArchitecture
 
 struct RootView: View {
     let store: Store<RootState, RootAction>
-    @State private var showPresent = false
 
     var body: some View {
-        WithViewStore(self.store.stateless) { viewStore in
+        WithViewStore(store) { viewStore in
                 VStack {
                     RootLabel(store: store.scope(
                         state: \.countState, action: RootAction.counterAction
@@ -25,28 +24,17 @@ struct RootView: View {
                             ))
                         })
                     }.padding()
-                    
+
                     Button(action: {
-                        self.showPresent.toggle()
+                        viewStore.send(.setLockActive(true))
                     }) {
                         Text("LockView")
-                    }.sheet(isPresented: $showPresent) {
+                    }
+                }.sheet( isPresented: viewStore.binding(
+                    get: \.showPresent,
+                    send: RootAction.setLockActive)) {
                         LockView()
                     }
-                }
-
         }
     }
 }
-
-
-
-
-//struct RootView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        RootView(store: Store(
-//            initialState: RootState(),
-//            reducer: rootReducer,
-//            environment: RootEnvironment()))
-//    }
-//}
