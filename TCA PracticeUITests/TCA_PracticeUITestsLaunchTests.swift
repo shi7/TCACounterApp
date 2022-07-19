@@ -1,14 +1,13 @@
 //
-//  TCA_Counter_AppUITestsLaunchTests.swift
-//  TCA Counter AppUITests
+//  TCA_PracticeUITestsLaunchTests.swift
+//  TCA PracticeUITests
 //
-//  Created by xiangmu.shi on 2022/7/6.
+//  Created by Xiangmu Shi on 2022/7/18.
 //
 
 import XCTest
 
-class TCA_Counter_AppUITestsLaunchTests: XCTestCase {
-
+class TCA_PracticeUITestsLaunchTests: XCTestCase {
     override class var runsForEachTargetApplicationUIConfiguration: Bool {
         true
     }

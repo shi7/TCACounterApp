@@ -1,15 +1,14 @@
 //
-//  TCA_Counter_AppTests.swift
-//  TCA Counter AppTests
+//  TCA_PracticeTests.swift
+//  TCA PracticeTests
 //
-//  Created by xiangmu.shi on 2022/7/6.
+//  Created by Xiangmu Shi on 2022/7/18.
 //
 
+@testable import TCA_Practice
 import XCTest
-@testable import TCA_Counter_App
 
-class TCA_Counter_AppTests: XCTestCase {
-
+class TCA_PracticeTests: XCTestCase {
     override func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.
     }
@@ -28,9 +27,8 @@ class TCA_Counter_AppTests: XCTestCase {
 
     func testPerformanceExample() throws {
         // This is an example of a performance test case.
-        self.measure {
+        measure {
             // Put the code you want to measure the time of here.
         }
     }
-
 }
