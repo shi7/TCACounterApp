@@ -9,7 +9,7 @@ import ComposableArchitecture
 import Foundation
 
 struct AppState: Equatable {
-    var root: RootState = .init(isActiveLockView: false)
+    var root: RootState = .init(isActiveLockView: false, isActiveUserView: false)
 }
 
 enum AppAction {

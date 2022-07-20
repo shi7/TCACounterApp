@@ -22,7 +22,9 @@ enum RootAction {
     case setUserActive(Bool)
 }
 
-struct RootEnvironment {}
+struct RootEnvironment {
+
+}
 
 let rootReducer = Reducer<
     RootState,
@@ -49,8 +51,11 @@ let rootReducer = Reducer<
                 break
             }
             return .none
-        case let .setLockActive(show):
-            state.isActiveLockView = show
+        case let .setLockActive(active):
+            state.isActiveLockView = active
+            return .none
+        case let .setUserActive(active):
+            state.isActiveUserView = active
             return .none
         default:
             return .none

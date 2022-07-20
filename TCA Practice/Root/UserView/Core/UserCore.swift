@@ -19,12 +19,12 @@ struct UserState: Equatable, Identifiable {
 
 extension UserState {
     var name: String {
-        get { String( firstName + lastName ) }
+        get { String( firstName + " " + lastName ) }
     }
 }
 
 enum UserAction: Equatable {
-
+    case itemTaped
 }
 
 struct UserEnvironment {}
@@ -33,7 +33,7 @@ struct UserEnvironment {}
 let userReducer = Reducer<UserState, UserAction, UserEnvironment> {
     state, action, environment in
     switch action {
-        default:
+        case .itemTaped:
             return .none
     }
 }

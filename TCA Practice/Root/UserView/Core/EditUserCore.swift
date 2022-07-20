@@ -9,6 +9,8 @@ import ComposableArchitecture
 import Foundation
 
 struct EditUserState: Equatable {
+    var user: UserState
+    
 }
 
 enum EditUserAction: Equatable {

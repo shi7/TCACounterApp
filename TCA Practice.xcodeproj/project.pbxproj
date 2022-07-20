@@ -32,6 +32,8 @@
 		C7028C7A288593C5004E6E70 /* DetailCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7028C79288593C5004E6E70 /* DetailCore.swift */; };
 		C704FE3728859842009307B5 /* RootLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C704FE3628859842009307B5 /* RootLabel.swift */; };
 		C704FE3A2885B841009307B5 /* ComposableArchitecture in Frameworks */ = {isa = PBXBuildFile; productRef = C704FE392885B841009307B5 /* ComposableArchitecture */; };
+		C77A95252887069800D90303 /* SwiftRandom.swift in Sources */ = {isa = PBXBuildFile; fileRef = C77A95242887069800D90303 /* SwiftRandom.swift */; };
+		C77A952728877AAA00D90303 /* UserListCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = C77A952628877AAA00D90303 /* UserListCore.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -79,6 +81,8 @@
 		C7028C7728859392004E6E70 /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
 		C7028C79288593C5004E6E70 /* DetailCore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailCore.swift; sourceTree = "<group>"; };
 		C704FE3628859842009307B5 /* RootLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootLabel.swift; sourceTree = "<group>"; };
+		C77A95242887069800D90303 /* SwiftRandom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftRandom.swift; sourceTree = "<group>"; };
+		C77A952628877AAA00D90303 /* UserListCore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserListCore.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -122,6 +126,7 @@
 			isa = PBXGroup;
 			children = (
 				C0B8B0272886A69C00D5C127 /* UserCore.swift */,
+				C77A952628877AAA00D90303 /* UserListCore.swift */,
 				C0B8B02F2886A6EC00D5C127 /* UserDetailCore.swift */,
 				C0B8B0312886A6FC00D5C127 /* EditUserCore.swift */,
 			);
@@ -229,6 +234,7 @@
 		C7028C65288590C2004E6E70 /* Utility */ = {
 			isa = PBXGroup;
 			children = (
+				C77A95242887069800D90303 /* SwiftRandom.swift */,
 			);
 			path = Utility;
 			sourceTree = "<group>";
@@ -407,6 +413,7 @@
 				C0B8B02E2886A6CE00D5C127 /* UserDetailView.swift in Sources */,
 				C7028C6928859118004E6E70 /* RootCore.swift in Sources */,
 				C7028C7528859362004E6E70 /* LockView.swift in Sources */,
+				C77A952728877AAA00D90303 /* UserListCore.swift in Sources */,
 				C0B8B0302886A6EC00D5C127 /* UserDetailCore.swift in Sources */,
 				C7028C6128858FF2004E6E70 /* AppView.swift in Sources */,
 				C7028C3428858F72004E6E70 /* TCA_PracticeApp.swift in Sources */,
@@ -422,6 +429,7 @@
 				C0B8B02C2886A6B700D5C127 /* EditUserView.swift in Sources */,
 				C0B8B0322886A6FC00D5C127 /* EditUserCore.swift in Sources */,
 				C7028C6B28859162004E6E70 /* CounterEnvionment.swift in Sources */,
+				C77A95252887069800D90303 /* SwiftRandom.swift in Sources */,
 				C7028C70288591CB004E6E70 /* CounterView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

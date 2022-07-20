@@ -29,7 +29,11 @@ struct RootView: View {
                     viewStore.send(.setLockActive(true))
                 }) {
                     Text("LockView")
-                }
+                }.padding()
+
+                NavigationLink("UserView", destination: {
+                    UserView()
+                })
             }.sheet(isPresented: viewStore.binding(
                 get: \.isActiveLockView,
                 send: RootAction.setLockActive
