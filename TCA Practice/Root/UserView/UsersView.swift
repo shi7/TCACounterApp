@@ -13,11 +13,15 @@ struct UsersView: View {
     let store: Store<UserListState, UserListAction> = Store(initialState: UserListEnvironment().live, reducer: userListReducer, environment: UserListEnvironment())
 
     var body: some View {
-        List {
-            ForEachStore((self.store.scope(state: \.listData,action: UserListAction.itemUpdate(id:action:))), content: { user in
-                UserItemView(store: user)
-            })
-        }.navigationBarTitle("UsersView")
+        WithViewStore(store) { viewStore in
+            List {
+                ForEachStore((self.store.scope(state: \.listData,action: UserListAction.itemUpdate(id:action:))), content: { user in
+                    UserItemView(store: user)
+                })
+            }.navigationBarTitle("UsersView").onAppear() {
+                viewStore.send(.startTimerSchedule)
+            }
+        }
     }
 
 }

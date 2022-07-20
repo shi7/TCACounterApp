@@ -78,8 +78,12 @@ struct EditUserView: View {
                     }.border(.gray)
                 }
                 Spacer()
-            }.frame(maxWidth: .infinity, maxHeight: .infinity)
-                .padding(EdgeInsets(top: 0, leading: 20, bottom: 0, trailing:0))
+            }
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
+            .padding(EdgeInsets(top: 0, leading: 20, bottom: 0, trailing:0))
+            .onDisappear {
+                viewStore.send(.isShowEditUserView(false))
+            }
         }
     }
 }
