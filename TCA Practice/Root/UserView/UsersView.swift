@@ -8,16 +8,16 @@
 import ComposableArchitecture
 import SwiftUI
 
-struct UserView: View {
+struct UsersView: View {
 
     let store: Store<UserListState, UserListAction> = Store(initialState: UserListEnvironment().live, reducer: userListReducer, environment: UserListEnvironment())
 
     var body: some View {
         List {
-            ForEachStore((self.store.scope(state: \.listData,action: UserListAction.iemUpdate(id:action:))), content: { user in
+            ForEachStore((self.store.scope(state: \.listData,action: UserListAction.itemUpdate(id:action:))), content: { user in
                 UserItemView(store: user)
             })
-        }.navigationBarTitle("UserView")
+        }.navigationBarTitle("UsersView")
     }
 
 }
@@ -28,7 +28,7 @@ struct UserItemView: View {
     var body: some View {
         WithViewStore(store) { viewStore in
             NavigationLink(destination:
-                            UserDetailView(store: store)
+                UserDetailView(store: store)
               ) {
                 VStack(alignment: .leading) {
                     Text("NAME: \(viewStore.name)").padding(EdgeInsets(top: 0, leading: 0, bottom: 5, trailing:0))
@@ -39,6 +39,4 @@ struct UserItemView: View {
         }
     }
 }
-
-
 

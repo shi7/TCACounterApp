@@ -14,15 +14,16 @@ struct UserListState: Equatable {
 
 enum UserListAction {
     case itemTaped
-    case iemUpdate(id: UserState.ID, action: UserAction)
+    case itemUpdate(id: UserState.ID, action: UserAction)
 }
 
 struct UserListEnvironment {
     var live = UserListState(listData: [
-        UserState(firstName: String.random(ofLength: 8), lastName: String.random(ofLength: 6), email: "\(String.random(ofLength: 8))@compass.com", age: Int.random(), job: String.random(ofLength: 6)),
-        UserState(firstName: String.random(ofLength: 8), lastName: String.random(ofLength: 6), email: "\(String.random(ofLength: 8))@compass.com", age: Int.random(), job: String.random(ofLength: 6)),
-        UserState(firstName: String.random(ofLength: 8), lastName: String.random(ofLength: 6), email: "\(String.random(ofLength: 8))@compass.com", age: Int.random(), job: String.random(ofLength: 6)),
-        UserState(firstName: String.random(ofLength: 8), lastName: String.random(ofLength: 6), email: "\(String.random(ofLength: 8))@compass.com", age: Int.random(), job: String.random(ofLength: 6))
+        UserState(firstName: Randoms.randomFakeFirstName(), lastName: Randoms.randomFakeLastName(), email: "\(String.random(ofLength: 8))@compass.com", age: Int.random(), job: Randoms.randomFakeTag()),
+        UserState(firstName: Randoms.randomFakeFirstName(), lastName: Randoms.randomFakeLastName(), email: "\(String.random(ofLength: 8))@compass.com", age: Int.random(), job: Randoms.randomFakeTag()),
+        UserState(firstName: Randoms.randomFakeFirstName(), lastName: Randoms.randomFakeLastName(), email: "\(String.random(ofLength: 8))@compass.com", age: Int.random(), job: Randoms.randomFakeTag()),
+        UserState(firstName: Randoms.randomFakeFirstName(), lastName: Randoms.randomFakeLastName(), email: "\(String.random(ofLength: 8))@compass.com", age: Int.random(), job: Randoms.randomFakeTag()),
+        UserState(firstName: Randoms.randomFakeFirstName(), lastName: Randoms.randomFakeLastName(), email: "\(String.random(ofLength: 8))@compass.com", age: Int.random(), job: Randoms.randomFakeTag()),
     ])
 }
 
@@ -31,7 +32,7 @@ struct UserListEnvironment {
 let userListReducer: Reducer<UserListState, UserListAction, UserListEnvironment> =
 userReducer.forEach(
     state: \.listData,
-    action: /UserListAction.iemUpdate,
+    action: /UserListAction.itemUpdate,
     environment: { _ in UserEnvironment() }
 ).combined(with: Reducer { state, action, _ in
     switch action {

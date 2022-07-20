@@ -21,13 +21,17 @@ struct UserDetailView: View {
                 Text("AGE: \(viewStore.age)")
                 Spacer().frame(height: 10)
                 Text("JOB: \(viewStore.job)").padding(EdgeInsets(top: 0, leading: 0, bottom: 5, trailing:0))
-            }.padding()
-                .navigationBarItems(
-                    trailing:
-                        Button("Edit") {
-
-                        }
-                )
+            }
+            .sheet(isPresented: viewStore.binding(
+                    get: \.isActiveEditUserView,
+                    send: UserAction.itemTaped
+                )) {
+                    EditUserView(store: store)
+                }
+            .padding()
+            .navigationBarItems( trailing: Button("Edit") {
+                viewStore.send(.isShowEditUserView(true))
+            })
         }
     }
 }

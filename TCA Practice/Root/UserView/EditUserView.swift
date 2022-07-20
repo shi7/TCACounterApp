@@ -14,16 +14,72 @@ struct EditUserView: View {
     var body: some View {
         WithViewStore(store) { viewStore in
             VStack(alignment: .leading) {
-                Text("NAME: \(viewStore.name)").padding(EdgeInsets(top: 5, leading: 0, bottom: 0, trailing:0))
-                Spacer().frame(height: 10)
-                Text("EMAIL: \(viewStore.email)")
-                Spacer().frame(height: 10)
-                Text("AGE: \(viewStore.age)")
-                Spacer().frame(height: 10)
-                Text("JOB: \(viewStore.job)").padding(EdgeInsets(top: 0, leading: 0, bottom: 5, trailing:0))
-            }.padding()
-        }.navigationBarItems(
-            trailing: Button("Save") {}
-        ).navigationBarBackButtonHidden(false)
+                HStack() {
+                    Text("Edit User")
+                        .font(.largeTitle)
+                    Spacer()
+                    Button("Done") {
+                        viewStore.send(.isShowEditUserView(false))
+                    }
+                }.padding()
+
+
+                HStack {
+                    Text("FirstName: ").frame(width:70)
+                    VStack {
+                        TextField("firstName", text: viewStore.binding(
+                            get:  \.firstName,
+                            send: UserAction.updateFirstName
+                        ))
+                            .frame(width: 120).padding()
+                    }.border(.gray)
+                }
+                HStack {
+                    Text("LastName: ").frame(width:70)
+                    VStack {
+                        TextField("lastName", text: viewStore.binding(
+                            get: \.lastName,
+                            send: UserAction.updateLastName
+                        ))
+                            .frame(width: 120).padding()
+                    }.border(.gray)
+                }
+                HStack {
+                    Text("Email: ").frame(width:70)
+
+                    VStack {
+                        TextField("email", text: viewStore.binding(
+                            get:  \.email,
+                            send: UserAction.updateEmail
+                        ))
+                            .frame(minWidth: 120,  maxWidth: 180).padding()
+                    }.border(.gray)
+                }
+
+                HStack {
+                    Text("Job: ").frame(width:70)
+                    VStack {
+                        TextField("job", text: viewStore.binding(
+                            get:  \.job,
+                            send: UserAction.updateJob
+                        ))
+                            .frame(width: 120).padding()
+                    }.border(.gray)
+                }
+
+                HStack {
+                    Text("Age: ").frame(width:70)
+                    VStack {
+                        TextField("age", text: viewStore.binding(
+                            get:  \.ageString,
+                            send: UserAction.updateAge
+                        )).keyboardType(.numberPad)
+                            .frame(width: 120).padding()
+                    }.border(.gray)
+                }
+                Spacer()
+            }.frame(maxWidth: .infinity, maxHeight: .infinity)
+                .padding(EdgeInsets(top: 0, leading: 20, bottom: 0, trailing:0))
+        }
     }
 }
