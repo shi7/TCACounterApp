@@ -19,12 +19,15 @@ struct UserState: Equatable, Identifiable {
 }
 
 extension UserState {
-    var name: String {
-        get { String( firstName + " " + lastName ) }
-    }
+    var name: String { String(firstName + " " + lastName) }
+
     var ageString: String {
         get { String(age) }
         set { age = Int(newValue) ?? 0 }
+    }
+
+    init(user: UserState) {
+        self.init(id: user.id, firstName: user.firstName, lastName: user.lastName, email: user.email, age: user.age, job: user.job)
     }
 }
 
@@ -40,30 +43,28 @@ enum UserAction: Equatable {
 
 struct UserEnvironment {}
 
-
 let userReducer = Reducer<UserState, UserAction, UserEnvironment> {
-    state, action, environment in
+    state, action, _ in
     switch action {
-        case .itemTaped:
-            return .none
-        case .isShowEditUserView(let active):
-            state.isActiveEditUserView = active
-            return .none
-        case .updateFirstName(let name):
-            state.firstName = name
-            return .none
-        case .updateLastName(let lastName):
-            state.lastName = lastName
-            return .none
-        case .updateEmail(let email):
-            state.email = email
-            return .none
-        case .updateJob(let job):
-            state.job = job
-            return .none
-        case .updateAge(let age):
-            state.age = Int(age) ?? 0
-            return .none
+    case .itemTaped:
+        return .none
+    case let .isShowEditUserView(active):
+        state.isActiveEditUserView = active
+        return .none
+    case let .updateFirstName(name):
+        state.firstName = name
+        return .none
+    case let .updateLastName(lastName):
+        state.lastName = lastName
+        return .none
+    case let .updateEmail(email):
+        state.email = email
+        return .none
+    case let .updateJob(job):
+        state.job = job
+        return .none
+    case let .updateAge(age):
+        state.age = Int(age) ?? 0
+        return .none
     }
 }
-

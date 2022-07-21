@@ -1,44 +1,44 @@
-    //
-    //  SwiftRandom.swift
-    //
-    //  Created by Furkan Yilmaz on 7/10/15.
-    //  Copyright (c) 2015 Furkan Yilmaz. All rights reserved.
-    //
+//
+//  SwiftRandom.swift
+//
+//  Created by Furkan Yilmaz on 7/10/15.
+//  Copyright (c) 2015 Furkan Yilmaz. All rights reserved.
+//
 
 import UIKit
 
-    // each type has its own random
+// each type has its own random
 
 public extension Bool {
-        /// SwiftRandom extension
+    /// SwiftRandom extension
     static func random() -> Bool {
         return Int.random() % 2 == 0
     }
 }
 
 public extension Int {
-        /// SwiftRandom extension
+    /// SwiftRandom extension
     static func random(_ lower: Int = 0, _ upper: Int = 100) -> Int {
-        return Int.random(in: lower...upper)
+        return Int.random(in: lower ... upper)
     }
 }
 
 public extension Int32 {
-        /// SwiftRandom extension
-        ///
-        /// - note: Using `Int` as parameter type as we usually just want to write `Int32.random(13, 37)` and not `Int32.random(Int32(13), Int32(37))`
+    /// SwiftRandom extension
+    ///
+    /// - note: Using `Int` as parameter type as we usually just want to write `Int32.random(13, 37)` and not `Int32.random(Int32(13), Int32(37))`
     static func random(_ lower: Int = 0, _ upper: Int = 100) -> Int32 {
-        return Int32.random(in: Int32(lower)...Int32(upper))
+        return Int32.random(in: Int32(lower) ... Int32(upper))
     }
 }
 
 public extension String {
-        /// SwiftRandom extension
+    /// SwiftRandom extension
     static func random(ofLength length: Int) -> String {
         return random(minimumLength: length, maximumLength: length)
     }
 
-        /// SwiftRandom extension
+    /// SwiftRandom extension
     static func random(minimumLength min: Int, maximumLength max: Int) -> String {
         return random(
             withCharactersInString: "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789",
@@ -47,7 +47,7 @@ public extension String {
         )
     }
 
-        /// SwiftRandom extension
+    /// SwiftRandom extension
     static func random(withCharactersInString string: String, ofLength length: Int) -> String {
         return random(
             withCharactersInString: string,
@@ -56,17 +56,17 @@ public extension String {
         )
     }
 
-        /// SwiftRandom extension
+    /// SwiftRandom extension
     static func random(withCharactersInString string: String, minimumLength min: Int, maximumLength max: Int) -> String {
-        guard min > 0 && max >= min else {
+        guard min > 0, max >= min else {
             return ""
         }
 
-        let length: Int = (min < max) ? .random(in: min...max) : max
+        let length: Int = (min < max) ? .random(in: min ... max) : max
         var randomString = ""
 
-        (1...length).forEach { _ in
-            let randomIndex: Int = .random(in: 0..<string.count)
+        (1 ... length).forEach { _ in
+            let randomIndex: Int = .random(in: 0 ..< string.count)
             let c = string.index(string.startIndex, offsetBy: randomIndex)
             randomString += String(string[c])
         }
@@ -76,51 +76,50 @@ public extension String {
 }
 
 public extension Double {
-        /// SwiftRandom extension
+    /// SwiftRandom extension
     static func random(_ lower: Double = 0, _ upper: Double = 100) -> Double {
-        return Double.random(in: lower...upper)
+        return Double.random(in: lower ... upper)
     }
 }
 
 public extension Float {
-        /// SwiftRandom extension
+    /// SwiftRandom extension
     static func random(_ lower: Float = 0, _ upper: Float = 100) -> Float {
-        return Float.random(in: lower...upper)
+        return Float.random(in: lower ... upper)
     }
 }
 
 public extension CGFloat {
-        /// SwiftRandom extension
+    /// SwiftRandom extension
     static func random(_ lower: CGFloat = 0, _ upper: CGFloat = 1) -> CGFloat {
-        return CGFloat.random(in: lower...upper)
+        return CGFloat.random(in: lower ... upper)
     }
 }
 
 public extension Date {
-        /// SwiftRandom extension
+    /// SwiftRandom extension
     static func randomWithinDaysBeforeToday(_ days: Int) -> Date {
         let today = Date()
-        let earliest = today.addingTimeInterval(TimeInterval(-days*24*60*60))
+        let earliest = today.addingTimeInterval(TimeInterval(-days * 24 * 60 * 60))
 
         return Date.random(between: earliest, and: today)
     }
 
-        /// SwiftRandom extension
+    /// SwiftRandom extension
     static func random() -> Date {
         let randomTime = TimeInterval(arc4random_uniform(UInt32.max))
         return Date(timeIntervalSince1970: randomTime)
     }
 
-    static func random(between initial: Date, and final:Date) -> Date {
+    static func random(between initial: Date, and final: Date) -> Date {
         let interval = final.timeIntervalSince(initial)
         let randomInterval = TimeInterval(arc4random_uniform(UInt32(interval)))
         return initial.addingTimeInterval(randomInterval)
     }
-
 }
 
 public extension UIColor {
-        /// SwiftRandom extension
+    /// SwiftRandom extension
     static func random(_ randomAlpha: Bool = false) -> UIColor {
         let randomRed = CGFloat.random()
         let randomGreen = CGFloat.random()
@@ -131,19 +130,19 @@ public extension UIColor {
 }
 
 public extension URL {
-        /// SwiftRandom extension
+    /// SwiftRandom extension
     static func random() -> URL {
         let urlList = ["http://www.google.com", "http://leagueoflegends.com/", "https://github.com/", "http://stackoverflow.com/", "https://medium.com/", "http://9gag.com/gag/6715049", "http://imgur.com/gallery/s9zoqs9", "https://www.youtube.com/watch?v=uelHwf8o7_U"]
         return URL(string: urlList.randomElement()!)!
     }
 }
 
+public enum Randoms {
+    //==========================================================================================================
 
-public struct Randoms {
+    // MARK: - Object randoms
 
-        //==========================================================================================================
-        // MARK: - Object randoms
-        //==========================================================================================================
+    //==========================================================================================================
 
     public static func randomBool() -> Bool {
         return Bool.random()
@@ -213,9 +212,11 @@ public struct Randoms {
         return URL.random()
     }
 
-        //==========================================================================================================
-        // MARK: - Fake random data generators
-        //==========================================================================================================
+    //==========================================================================================================
+
+    // MARK: - Fake random data generators
+
+    //==========================================================================================================
 
     public static func randomFakeName() -> String {
         return randomFakeFirstName() + " " + randomFakeLastName()
@@ -268,7 +269,7 @@ public struct Randoms {
     }
 
     public static func randomCurrency() -> String {
-        let currencyList = ["USD", "EUR", "GBP", "JPY", "AUD", "CAD", "ZAR", "NZD", "INR", "BRP", "CNY", "EGP", "KRW", "MXN", "SAR", "SGD",]
+        let currencyList = ["USD", "EUR", "GBP", "JPY", "AUD", "CAD", "ZAR", "NZD", "INR", "BRP", "CNY", "EGP", "KRW", "MXN", "SAR", "SGD"]
 
         return currencyList.randomElement()!
     }
@@ -293,7 +294,7 @@ public struct Randoms {
         let request = URLRequest(url: URL(string: url)! as URL, cachePolicy: .reloadIgnoringLocalAndRemoteCacheData, timeoutInterval: 5.0)
         let session = URLSession.shared
 
-        session.dataTask(with: request as URLRequest, completionHandler: { (data, response, error) in
+        session.dataTask(with: request as URLRequest, completionHandler: { data, _, error in
             DispatchQueue.main.async {
                 if error == nil {
                     completion?(UIImage(data: data!), nil)

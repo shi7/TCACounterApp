@@ -9,21 +9,19 @@ import ComposableArchitecture
 import SwiftUI
 
 struct UsersView: View {
-
     let store: Store<UserListState, UserListAction> = Store(initialState: UserListEnvironment().live, reducer: userListReducer, environment: UserListEnvironment())
 
     var body: some View {
         WithViewStore(store) { viewStore in
             List {
-                ForEachStore((self.store.scope(state: \.listData,action: UserListAction.itemUpdate(id:action:))), content: { user in
+                ForEachStore(self.store.scope(state: \.listData, action: UserListAction.itemUpdate(id:action:)), content: { user in
                     UserItemView(store: user)
                 })
-            }.navigationBarTitle("UsersView").onAppear() {
+            }.navigationBarTitle("UsersView").onAppear {
                 viewStore.send(.startTimerSchedule)
             }
         }
     }
-
 }
 
 struct UserItemView: View {
@@ -33,14 +31,12 @@ struct UserItemView: View {
         WithViewStore(store) { viewStore in
             NavigationLink(destination:
                 UserDetailView(store: store)
-              ) {
+            ) {
                 VStack(alignment: .leading) {
-                    Text("NAME: \(viewStore.name)").padding(EdgeInsets(top: 0, leading: 0, bottom: 5, trailing:0))
+                    Text("NAME: \(viewStore.name)").padding(EdgeInsets(top: 0, leading: 0, bottom: 5, trailing: 0))
                     Text("EMAIL: \(viewStore.email)")
                 }.padding()
-
             }
         }
     }
 }
-

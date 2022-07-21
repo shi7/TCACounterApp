@@ -8,20 +8,16 @@
 import ComposableArchitecture
 import Foundation
 
-struct EditUserState: Equatable {    
-}
+struct EditUserState: Equatable {}
 
-enum EditUserAction: Equatable {
-
-}
+enum EditUserAction: Equatable {}
 
 struct EditUserEnvironment {}
 
-
 let editUserReducer = Reducer<EditUserState, EditUserAction, EditUserEnvironment> {
-    state, action, environment in
+    _, action, _ in
     switch action {
-        default:
-            return .none
+    default:
+        return .none
     }
 }

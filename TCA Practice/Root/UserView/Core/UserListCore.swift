@@ -7,7 +7,6 @@
 import ComposableArchitecture
 import Foundation
 
-
 struct UserListState: Equatable {
     var listData: IdentifiedArrayOf<UserState> = []
     var isTimerActive = false
@@ -31,35 +30,36 @@ struct UserListEnvironment {
     ])
 }
 
-
-
 let userListReducer: Reducer<UserListState, UserListAction, UserListEnvironment> =
-userReducer.forEach(
-    state: \.listData,
-    action: /UserListAction.itemUpdate,
-    environment: { _ in UserEnvironment() }
-).combined(with: Reducer { state, action, _ in
-    enum TimerId {}
-    switch action {
+    userReducer.forEach(
+        state: \.listData,
+        action: /UserListAction.itemUpdate,
+        environment: { _ in UserEnvironment() }
+    ).combined(with: Reducer { state, action, _ in
+        enum TimerId {}
+        switch action {
         case .timerTicked:
-          state.secondsElapsed += 1
-            if state.secondsElapsed % 5 == 0 {
-                print("good job\(state.listData[0].age)")
-//                state.listData[0].age = 20
-            }
+            state.secondsElapsed += 1
             print("timerTicked")
-          return .none
+            if state.secondsElapsed % 5 == 0 {
+                print("timerTicked userUpdate")
+                let oldUser = state.listData[0]
+                var newUser = UserState(user: oldUser)
+                newUser.age = oldUser.age + 1
+                state.listData.update(newUser, at: 0)
+            }
+            return .none
         case .startTimerSchedule:
             state.isTimerActive.toggle()
             return state.isTimerActive
-              ? Effect.timer(
-                id: TimerId.self,
-                every: 1,
-                tolerance: .zero,
-                on: DispatchQueue.main.eraseToAnyScheduler()
-              ).map { _ in UserListAction.timerTicked }
-              : .cancel(id: TimerId.self)
+                ? Effect.timer(
+                    id: TimerId.self,
+                    every: 1,
+                    tolerance: .zero,
+                    on: DispatchQueue.main.eraseToAnyScheduler()
+                ).map { _ in UserListAction.timerTicked }
+                : .cancel(id: TimerId.self)
         default:
             return .none
-    }
-})
+        }
+    })

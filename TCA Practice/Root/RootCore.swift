@@ -22,9 +22,7 @@ enum RootAction {
     case setUserActive(Bool)
 }
 
-struct RootEnvironment {
-
-}
+struct RootEnvironment {}
 
 let rootReducer = Reducer<
     RootState,
