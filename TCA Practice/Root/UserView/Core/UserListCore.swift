@@ -16,7 +16,7 @@ struct UserListState: Equatable {
 enum UserListAction {
     case itemTaped
     case itemUpdate(id: UserState.ID, action: UserAction)
-    case startTimerSchedule
+    case startTimerSchedule(Bool)
     case timerTicked
 }
 
@@ -46,11 +46,12 @@ let userListReducer: Reducer<UserListState, UserListAction, UserListEnvironment>
                 let oldUser = state.listData[0]
                 var newUser = UserState(user: oldUser)
                 newUser.age = oldUser.age + 1
+                newUser.lastName = Randoms.randomFakeLastName()
                 state.listData.update(newUser, at: 0)
             }
             return .none
-        case .startTimerSchedule:
-            state.isTimerActive.toggle()
+        case .startTimerSchedule(let start):
+            state.isTimerActive = start
             return state.isTimerActive
                 ? Effect.timer(
                     id: TimerId.self,

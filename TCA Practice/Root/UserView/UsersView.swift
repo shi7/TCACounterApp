@@ -17,8 +17,12 @@ struct UsersView: View {
                 ForEachStore(self.store.scope(state: \.listData, action: UserListAction.itemUpdate(id:action:)), content: { user in
                     UserItemView(store: user)
                 })
-            }.navigationBarTitle("UsersView").onAppear {
-                viewStore.send(.startTimerSchedule)
+            }.navigationBarTitle("UsersView")
+            .onAppear {
+                viewStore.send(.startTimerSchedule(true))
+            }
+            .onDisappear{
+                viewStore.send(.startTimerSchedule(false))
             }
         }
     }
