@@ -18,12 +18,12 @@ struct UsersView: View {
                     UserItemView(store: user)
                 })
             }.navigationBarTitle("UsersView")
-            .onAppear {
-                viewStore.send(.startTimerSchedule(true))
-            }
-            .onDisappear{
-                viewStore.send(.startTimerSchedule(false))
-            }
+                .onAppear {
+                    viewStore.send(.startTimerSchedule(true))
+                }
+                .onDisappear {
+                    viewStore.send(.startTimerSchedule(false))
+                }
         }
     }
 }

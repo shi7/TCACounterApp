@@ -8,15 +8,23 @@
 import ComposableArchitecture
 import SwiftUI
 
+private extension HorizontalAlignment {
+    struct MidColonPoint: AlignmentID {
+        static func defaultValue(in d: ViewDimensions) -> CGFloat {
+            d[.leading]
+        }
+    }
+    static let midColonPoint = HorizontalAlignment(MidColonPoint.self)
+}
+
+private struct SizePreferenceKey: PreferenceKey {
+    static var defaultValue: CGSize = .zero
+    static func reduce(value: inout CGSize, nextValue: () -> CGSize) {}
+}
+
+
 struct EditUserView: View {
     let store: Store<UserState, UserAction>
-
-    private enum Constants {
-        static let leftTextWidth: CGFloat = 85
-        static let rightTextWidth: CGFloat = 120
-        static let rightTextMaxWidth: CGFloat = 180
-    }
-
     var body: some View {
         WithViewStore(store) { viewStore in
             VStack(alignment: .leading) {
@@ -29,62 +37,78 @@ struct EditUserView: View {
                     }
                 }.padding()
 
-                HStack {
-                    Text("FirstName: ").frame(width: Constants.leftTextWidth)
-                    VStack {
+                VStack(alignment:.midColonPoint) {
+                    HStack {
+                        Text("FirstName: ")
+
                         TextField("firstName", text: viewStore.binding(
                             get: \.firstName,
                             send: UserAction.updateFirstName
-                        ))
-                        .frame(width: Constants.rightTextWidth).padding()
-                    }.border(.gray)
-                }
-                HStack {
-                    Text("LastName: ").frame(width: Constants.leftTextWidth)
-                    VStack {
+                        )).padding()
+                            .border(.gray)
+                            .fixedSize()
+                            .alignmentGuide(.midColonPoint) { d in d[HorizontalAlignment.leading] }
+                    }
+                    .padding(EdgeInsets(top: 0, leading: 20, bottom: 0, trailing: 20))
+
+                    HStack {
+                        Text("LastName: ")
+
                         TextField("lastName", text: viewStore.binding(
                             get: \.lastName,
                             send: UserAction.updateLastName
-                        ))
-                        .frame(width: Constants.rightTextWidth).padding()
-                    }.border(.gray)
-                }
-                HStack {
-                    Text("Email: ").frame(width: Constants.leftTextWidth)
+                        )).padding()
+                            .border(.gray)
+                            .fixedSize()
+                            .alignmentGuide(.midColonPoint) { d in d[HorizontalAlignment.leading] }
+                    }
 
-                    VStack {
+                    HStack {
+                        Text("Email: ")
                         TextField("email", text: viewStore.binding(
                             get: \.email,
                             send: UserAction.updateEmail
-                        ))
-                        .frame(minWidth:  Constants.rightTextWidth, maxWidth:  Constants.rightTextMaxWidth).padding()
-                    }.border(.gray)
-                }
+                        )).padding()
+                            .border(.gray)
+                            .alignmentGuide(.midColonPoint) { d in d[HorizontalAlignment.leading] }
+                            .fixedSize()
+                    }
+                    .padding(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 20)).layoutPriority(1)
 
-                HStack {
-                    Text("Job: ").frame(width: Constants.leftTextWidth)
-                    VStack {
+                    HStack {
+                        Text("Job: ")
                         TextField("job", text: viewStore.binding(
                             get: \.job,
                             send: UserAction.updateJob
-                        ))
-                        .frame(width: Constants.rightTextWidth).padding()
-                    }.border(.gray)
-                }
+                        )).padding()
+                            .border(.gray)
+                            .fixedSize()
+                            .alignmentGuide(.midColonPoint) { d in d[HorizontalAlignment.leading] }
+                            .padding(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 20)).layoutPriority(1)
+                    }
+                    .background(
+                        GeometryReader { geometryProxy in
+                            Color.clear
+                            .preference(key: SizePreferenceKey.self, value: geometryProxy.size)
+                        }
+                    ).onPreferenceChange(SizePreferenceKey.self) { newSize in
+                        print("The new child size is: \(newSize)")
+                    }
 
-                HStack {
-                    Text("Age: ").frame(width: Constants.leftTextWidth)
-                    VStack {
+                    HStack {
+                        Text("Age: ")
                         TextField("age", text: viewStore.binding(
                             get: \.ageString,
                             send: UserAction.updateAge
                         )).keyboardType(.numberPad)
-                            .frame(width: Constants.rightTextWidth).padding()
-                    }.border(.gray)
+                            .padding()
+                            .border(.gray)
+                            .fixedSize()
+                            .alignmentGuide(.midColonPoint) { d in d[HorizontalAlignment.leading] }
+                    }
                 }
                 Spacer()
             }
-            .frame(maxWidth: .infinity, maxHeight: .infinity)
             .padding(EdgeInsets(top: 0, leading: 20, bottom: 0, trailing: 0))
             .onDisappear {
                 viewStore.send(.isShowEditUserView(false))

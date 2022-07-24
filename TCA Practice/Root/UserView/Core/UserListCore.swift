@@ -50,7 +50,7 @@ let userListReducer: Reducer<UserListState, UserListAction, UserListEnvironment>
                 state.listData.update(newUser, at: 0)
             }
             return .none
-        case .startTimerSchedule(let start):
+        case let .startTimerSchedule(start):
             state.isTimerActive = start
             return state.isTimerActive
                 ? Effect.timer(
