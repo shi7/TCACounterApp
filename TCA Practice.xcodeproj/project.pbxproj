@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C0B8B0282886A69C00D5C127 /* UserCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0B8B0272886A69C00D5C127 /* UserCore.swift */; };
+		C0B8B02A2886A6AC00D5C127 /* UsersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0B8B0292886A6AC00D5C127 /* UsersView.swift */; };
+		C0B8B02C2886A6B700D5C127 /* EditUserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0B8B02B2886A6B700D5C127 /* EditUserView.swift */; };
+		C0B8B02E2886A6CE00D5C127 /* UserDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0B8B02D2886A6CE00D5C127 /* UserDetailView.swift */; };
 		C7028C3428858F72004E6E70 /* TCA_PracticeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7028C3328858F72004E6E70 /* TCA_PracticeApp.swift */; };
 		C7028C3828858F74004E6E70 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C7028C3728858F74004E6E70 /* Assets.xcassets */; };
 		C7028C3B28858F74004E6E70 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C7028C3A28858F74004E6E70 /* Preview Assets.xcassets */; };
@@ -26,6 +30,8 @@
 		C7028C7A288593C5004E6E70 /* DetailCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7028C79288593C5004E6E70 /* DetailCore.swift */; };
 		C704FE3728859842009307B5 /* RootLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C704FE3628859842009307B5 /* RootLabel.swift */; };
 		C704FE3A2885B841009307B5 /* ComposableArchitecture in Frameworks */ = {isa = PBXBuildFile; productRef = C704FE392885B841009307B5 /* ComposableArchitecture */; };
+		C77A95252887069800D90303 /* SwiftRandom.swift in Sources */ = {isa = PBXBuildFile; fileRef = C77A95242887069800D90303 /* SwiftRandom.swift */; };
+		C77A952728877AAA00D90303 /* UserListCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = C77A952628877AAA00D90303 /* UserListCore.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -46,6 +52,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		C0B8B0272886A69C00D5C127 /* UserCore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCore.swift; sourceTree = "<group>"; };
+		C0B8B0292886A6AC00D5C127 /* UsersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersView.swift; sourceTree = "<group>"; };
+		C0B8B02B2886A6B700D5C127 /* EditUserView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditUserView.swift; sourceTree = "<group>"; };
+		C0B8B02D2886A6CE00D5C127 /* UserDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailView.swift; sourceTree = "<group>"; };
 		C7028C3028858F72004E6E70 /* TCA Practice.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "TCA Practice.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C7028C3328858F72004E6E70 /* TCA_PracticeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TCA_PracticeApp.swift; sourceTree = "<group>"; };
 		C7028C3728858F74004E6E70 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -67,6 +77,8 @@
 		C7028C7728859392004E6E70 /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
 		C7028C79288593C5004E6E70 /* DetailCore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailCore.swift; sourceTree = "<group>"; };
 		C704FE3628859842009307B5 /* RootLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootLabel.swift; sourceTree = "<group>"; };
+		C77A95242887069800D90303 /* SwiftRandom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftRandom.swift; sourceTree = "<group>"; };
+		C77A952628877AAA00D90303 /* UserListCore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserListCore.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -95,6 +107,26 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		C0B8B0262886A67000D5C127 /* UserView */ = {
+			isa = PBXGroup;
+			children = (
+				C0B8B0332886A71000D5C127 /* Core */,
+				C0B8B0292886A6AC00D5C127 /* UsersView.swift */,
+				C0B8B02D2886A6CE00D5C127 /* UserDetailView.swift */,
+				C0B8B02B2886A6B700D5C127 /* EditUserView.swift */,
+			);
+			path = UserView;
+			sourceTree = "<group>";
+		};
+		C0B8B0332886A71000D5C127 /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				C77A952628877AAA00D90303 /* UserListCore.swift */,
+				C0B8B0272886A69C00D5C127 /* UserCore.swift */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
 		C7028C2728858F72004E6E70 = {
 			isa = PBXGroup;
 			children = (
@@ -167,8 +199,9 @@
 		C7028C622885900C004E6E70 /* Root */ = {
 			isa = PBXGroup;
 			children = (
-				C7028C6628859102004E6E70 /* RootView.swift */,
 				C7028C6828859118004E6E70 /* RootCore.swift */,
+				C7028C6628859102004E6E70 /* RootView.swift */,
+				C0B8B0262886A67000D5C127 /* UserView */,
 				C704FE352885982E009307B5 /* RootLabel */,
 				C7028C762885936D004E6E70 /* CounterDetail */,
 				C7028C712885933C004E6E70 /* LockView */,
@@ -195,6 +228,7 @@
 		C7028C65288590C2004E6E70 /* Utility */ = {
 			isa = PBXGroup;
 			children = (
+				C77A95242887069800D90303 /* SwiftRandom.swift */,
 			);
 			path = Utility;
 			sourceTree = "<group>";
@@ -370,18 +404,24 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C0B8B02E2886A6CE00D5C127 /* UserDetailView.swift in Sources */,
 				C7028C6928859118004E6E70 /* RootCore.swift in Sources */,
 				C7028C7528859362004E6E70 /* LockView.swift in Sources */,
+				C77A952728877AAA00D90303 /* UserListCore.swift in Sources */,
 				C7028C6128858FF2004E6E70 /* AppView.swift in Sources */,
 				C7028C3428858F72004E6E70 /* TCA_PracticeApp.swift in Sources */,
 				C7028C7A288593C5004E6E70 /* DetailCore.swift in Sources */,
+				C0B8B0282886A69C00D5C127 /* UserCore.swift in Sources */,
 				C7028C5F28858FE3004E6E70 /* AppCore.swift in Sources */,
+				C0B8B02A2886A6AC00D5C127 /* UsersView.swift in Sources */,
 				C7028C6E288591AC004E6E70 /* CounterCore.swift in Sources */,
 				C7028C6728859102004E6E70 /* RootView.swift in Sources */,
 				C704FE3728859842009307B5 /* RootLabel.swift in Sources */,
 				C7028C7328859356004E6E70 /* LockCore.swift in Sources */,
 				C7028C7828859392004E6E70 /* DetailView.swift in Sources */,
+				C0B8B02C2886A6B700D5C127 /* EditUserView.swift in Sources */,
 				C7028C6B28859162004E6E70 /* CounterEnvionment.swift in Sources */,
+				C77A95252887069800D90303 /* SwiftRandom.swift in Sources */,
 				C7028C70288591CB004E6E70 /* CounterView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
